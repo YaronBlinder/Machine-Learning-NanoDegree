@@ -11861,7 +11861,7 @@ Regressions are used to obtain continuous values such as in numerical function a
 <span class="n">n_students</span> <span class="o">=</span> <span class="n">student_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="c1"># TODO: Calculate number of features</span>
-<span class="n">n_features</span> <span class="o">=</span> <span class="n">student_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">n_features</span> <span class="o">=</span> <span class="n">student_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span>
 
 <span class="c1"># TODO: Calculate passing students</span>
 <span class="n">n_passed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">student_data</span><span class="o">.</span><span class="n">passed</span> <span class="o">==</span> <span class="s1">&#39;yes&#39;</span><span class="p">)</span>
@@ -11870,7 +11870,7 @@ Regressions are used to obtain continuous values such as in numerical function a
 <span class="n">n_failed</span> <span class="o">=</span> <span class="n">n_students</span> <span class="o">-</span> <span class="n">n_passed</span>
 
 <span class="c1"># TODO: Calculate graduation rate</span>
-<span class="n">grad_rate</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">n_passed</span><span class="p">)</span><span class="o">/</span><span class="n">n_students</span>
+<span class="n">grad_rate</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">n_passed</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="o">/</span><span class="n">n_students</span>
 
 <span class="c1"># Print the results</span>
 <span class="k">print</span> <span class="s2">&quot;Total number of students: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_students</span><span class="p">)</span>
@@ -11891,10 +11891,10 @@ Regressions are used to obtain continuous values such as in numerical function a
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Total number of students: 395
-Number of features: 31
+Number of features: 30
 Number of students who passed: 265
 Number of students who failed: 130
-Graduation rate of the class: 0.67%
+Graduation rate of the class: 67.09%
 </pre>
 </div>
 </div>
@@ -12166,7 +12166,7 @@ Testing set has 95 samples.
 <li><strong>Support Vector Machines (SVM)</strong>:<ul>
 <li><strong>Application</strong>: SVMs are very commonly used in bioinformatics applications such as protein function prediction and gene expression classification. (ref: <a href="http://bib.oxfordjournals.org/content/5/4/328.abstract">http://bib.oxfordjournals.org/content/5/4/328.abstract</a>)</li>
 <li><strong>Strengths</strong>: Does not require any underlying assumptions regarding the data distribution, performs well for nonlinear classification due to the flexibility in kernel selection.</li>
-<li><strong>Weaknesses</strong>: Non-linear SVM classification can be difficult to interpret.</li>
+<li><strong>Weaknesses</strong>: Non-linear SVM classification can be difficult to interpret. Additionally, as SVM is a binary classification method, performing multi-class classification requires multiple pair-wise classifications.</li>
 <li>As our data includes some features which are likely to have some interdependence (e.g. parents' education and occupations, health and absences, etc.), we can expect a non-linear classifier to be more accurate than a linear one.</li>
 </ul>
 </li>
@@ -12325,56 +12325,56 @@ Testing set has 95 samples.
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Training a GaussianNB using a training set size of 100. . .
-Trained model in 0.0020 seconds
-Made predictions in 0.0000 seconds.
+Trained model in 0.0030 seconds
+Made predictions in 0.0010 seconds.
 F1 score for training set: 0.8346.
-Made predictions in 0.0000 seconds.
+Made predictions in 0.0020 seconds.
 F1 score for test set: 0.7402.
 Training a GaussianNB using a training set size of 200. . .
 Trained model in 0.0020 seconds
 Made predictions in 0.0010 seconds.
 F1 score for training set: 0.7879.
-Made predictions in 0.0000 seconds.
+Made predictions in 0.0010 seconds.
 F1 score for test set: 0.6446.
 Training a GaussianNB using a training set size of 300. . .
 Trained model in 0.0020 seconds
-Made predictions in 0.0000 seconds.
+Made predictions in 0.0010 seconds.
 F1 score for training set: 0.7921.
 Made predictions in 0.0010 seconds.
 F1 score for test set: 0.6720.
 Training a SVC using a training set size of 100. . .
 Trained model in 0.0020 seconds
-Made predictions in 0.0010 seconds.
+Made predictions in 0.0020 seconds.
 F1 score for training set: 0.8591.
 Made predictions in 0.0010 seconds.
 F1 score for test set: 0.8333.
 Training a SVC using a training set size of 200. . .
 Trained model in 0.0050 seconds
-Made predictions in 0.0040 seconds.
+Made predictions in 0.0050 seconds.
 F1 score for training set: 0.8581.
 Made predictions in 0.0020 seconds.
 F1 score for test set: 0.8408.
 Training a SVC using a training set size of 300. . .
-Trained model in 0.0110 seconds
-Made predictions in 0.0070 seconds.
+Trained model in 0.0130 seconds
+Made predictions in 0.0090 seconds.
 F1 score for training set: 0.8584.
 Made predictions in 0.0020 seconds.
 F1 score for test set: 0.8462.
 Training a GradientBoostingClassifier using a training set size of 100. . .
-Trained model in 0.0900 seconds
+Trained model in 0.1170 seconds
 Made predictions in 0.0010 seconds.
 F1 score for training set: 1.0000.
 Made predictions in 0.0010 seconds.
 F1 score for test set: 0.7669.
 Training a GradientBoostingClassifier using a training set size of 200. . .
-Trained model in 0.1430 seconds
-Made predictions in 0.0020 seconds.
+Trained model in 0.1580 seconds
+Made predictions in 0.0010 seconds.
 F1 score for training set: 1.0000.
 Made predictions in 0.0010 seconds.
 F1 score for test set: 0.7761.
 Training a GradientBoostingClassifier using a training set size of 300. . .
-Trained model in 0.2620 seconds
-Made predictions in 0.0010 seconds.
+Trained model in 0.1220 seconds
+Made predictions in 0.0020 seconds.
 F1 score for training set: 0.9706.
 Made predictions in 0.0010 seconds.
 F1 score for test set: 0.8088.
@@ -12555,7 +12555,9 @@ As is evident from the above tables, the SVM model outperformed the other two mo
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>In a supervised learning context, the Support Vector Machine model takes labeled data and seeks to find a boundary in the feature space which best separates the different labels. This is analogous to drawing a line on a plane, where all the objects on one side of the line would have one label (e.g. "passed"), and all the objects on the other side of the line would have a different label (e.g. "did not pass"). The model "learns" this boundary by mathematically calculating the margin on each side of it and maximizing that margin, while minimizing the number of erroneously classified instances.</p>
+<p>In a supervised learning context, the Support Vector Machine model takes labeled data and seeks to define a boundary which best separates the different labels. This is analogous to drawing a line on a plane, where all the objects (or students, in our case) on one side of the line would have one label (e.g. "passed"), and all the objects on the other side of the line would have a different label (e.g. "did not pass") - see example images below:</p>
+<p><img src = "https://udacity-github-sync-content.s3.amazonaws.com/_imgs/372/1457891585/data_2d_to_3d_hyperplane.png"></p>
+<p>In order to "learn" this boundaty, SVM uses a mathematical method known as the "kernel trick", which transforms the data in such a way that a boundary is then easily defined (in the above example - a plane in 3D is more easily "learned" than a circular boundary in 2D).</p>
 <p>Once the boundary is learned, a label prediction can be made for new datapoints simply by observing their location in the feature space and the label associated with that location.</p>
 
 </div>
@@ -12627,7 +12629,7 @@ As is evident from the above tables, the SVM model outperformed the other two mo
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Made predictions in 0.0090 seconds.
+<pre>Made predictions in 0.0080 seconds.
 Tuned model has a training F1 score of 0.9754.
 Made predictions in 0.0030 seconds.
 Tuned model has a testing F1 score of 0.8481.
