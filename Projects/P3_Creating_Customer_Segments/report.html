@@ -11972,6 +11972,10 @@ div#notebook {
 <span class="n">samples</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">indices</span><span class="p">],</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
 <span class="k">print</span> <span class="s2">&quot;Chosen samples of wholesale customers dataset:&quot;</span>
 <span class="n">display</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;Difference from the mean:&quot;</span>
+<span class="n">display</span><span class="p">(</span><span class="n">samples</span> <span class="o">-</span> <span class="n">data</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">())</span>
+<span class="k">print</span> <span class="s2">&quot;Difference from the median:&quot;</span>
+<span class="n">display</span><span class="p">(</span><span class="n">samples</span> <span class="o">-</span> <span class="n">data</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">())</span>
 </pre></div>
 
 </div>
@@ -12040,6 +12044,122 @@ div#notebook {
 
 </div>
 
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Difference from the mean:
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Fresh</th>
+      <th>Milk</th>
+      <th>Grocery</th>
+      <th>Frozen</th>
+      <th>Detergents_Paper</th>
+      <th>Delicatessen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5546.0</td>
+      <td>-1277.0</td>
+      <td>-3349.0</td>
+      <td>-2006.0</td>
+      <td>-622.0</td>
+      <td>599.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-10226.0</td>
+      <td>-2100.0</td>
+      <td>-5671.0</td>
+      <td>-2558.0</td>
+      <td>-2606.0</td>
+      <td>-691.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-7544.0</td>
+      <td>-530.0</td>
+      <td>5276.0</td>
+      <td>-3047.0</td>
+      <td>3937.0</td>
+      <td>-132.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Difference from the median:
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Fresh</th>
+      <th>Milk</th>
+      <th>Grocery</th>
+      <th>Frozen</th>
+      <th>Detergents_Paper</th>
+      <th>Delicatessen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>9042.0</td>
+      <td>892.0</td>
+      <td>-154.0</td>
+      <td>-460.0</td>
+      <td>1443.0</td>
+      <td>1158.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-6730.0</td>
+      <td>69.0</td>
+      <td>-2476.0</td>
+      <td>-1012.0</td>
+      <td>-541.0</td>
+      <td>-132.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-4048.0</td>
+      <td>1639.0</td>
+      <td>8471.0</td>
+      <td>-1501.0</td>
+      <td>6002.0</td>
+      <td>427.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -12063,11 +12183,11 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <ul>
-<li><p>Customer 1: Spends significantly more on fresh produce than anything else, and the least of their expense is on frozen foods. This may suggest this customer is a restaurant.</p>
+<li><p>Customer 1: Spends significantly above average on fresh produce, slightly above average on delicatessed, and below average on everything else. The least of their expense is on frozen foods. This may suggest this customer is a restaurant.</p>
 </li>
-<li><p>Customer 2: Spends very little across the board compared with the other two customers, with the most significant expenses being on milk and grocery. This may suggest a small coffeeshop.</p>
+<li><p>Customer 2: Spends below average across the board, with the most significant expenses being on milk and grocery. This may suggest a small coffeeshop.</p>
 </li>
-<li><p>Customer 3: Spends significantly more on grocery than anything else, followed by detergents/paper, milk and fresh produce. This may suggest a grocery store.</p>
+<li><p>Customer 3: Spends above average on grocery items and detergents/paper, and below average on all other items. This may suggest a grocery store.</p>
 </li>
 </ul>
 
@@ -13954,6 +14074,7 @@ Ny7+WPF7swAAAABJRU5ErkJggg==
 <p><strong>Answer:</strong></p>
 <p>Some feature pairs do exhibit a strong correlation. In particular, the <code>Detergents_Paper</code> feature apppears to be strongly correlated with both the <code>Milk</code> and <code>Grocery</code> features.</p>
 <p>The scatter matrix confirms my assertion the the <code>Fresh</code> feature is not correlated to the other features.</p>
+<p>According to the kernel distribution estimates in the diagonal, our features appear to be more or less normally distributed, with strong positive skewness across all features.</p>
 
 </div>
 </div>
@@ -17847,6 +17968,13 @@ Once you have performed this implementation, the dataset will be stored in the v
 <span class="k">print</span><span class="p">(</span><span class="s1">&#39;outlier indices : &#39;</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">outliers</span><span class="p">)</span>
 
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Repeating indices:&#39;</span><span class="p">)</span>
+<span class="n">counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">outliers</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">counter</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">counter</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Index &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; repeats &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">counter</span><span class="p">[</span><span class="n">index</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39; times.&#39;</span><span class="p">)</span>
+
 <span class="c1"># Remove the outliers, if any were specified</span>
 <span class="n">outliers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">outliers</span><span class="p">))</span>
 <span class="n">good_data</span> <span class="o">=</span> <span class="n">log_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">log_data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">outliers</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
@@ -18482,6 +18610,13 @@ Once you have performed this implementation, the dataset will be stored in the v
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>outlier indices : 
 [38, 57, 65, 65, 66, 66, 75, 75, 81, 86, 95, 96, 98, 109, 128, 128, 137, 142, 145, 154, 154, 154, 161, 171, 175, 183, 184, 187, 193, 203, 218, 233, 264, 285, 289, 304, 305, 325, 338, 343, 353, 355, 356, 357, 412, 420, 429, 439]
+
+Repeating indices:
+Index 128 repeats 2 times.
+Index 154 repeats 3 times.
+Index 65 repeats 2 times.
+Index 66 repeats 2 times.
+Index 75 repeats 2 times.
 </pre>
 </div>
 </div>
@@ -18506,7 +18641,7 @@ Once you have performed this implementation, the dataset will be stored in the v
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>As is shown above, four data points were considered outliers for at least two features (indices 65,66,75 and 154) with one (154) being considered an outlier on three separate features. These data points should be removed from the dataset as they fall far outside the general distribution of the data and are therefore likely to skew the results of our learning algorithm and reduce its ability to properly characterize the data.</p>
+<p>As is shown above, five data points were considered outliers for at least two features (indices 65,66,75,128 and 154) with one (154) being considered an outlier on three separate features. These data points should be removed from the dataset as they fall far outside the general distribution of the data and are therefore likely to skew the results of our learning algorithm and reduce its ability to properly characterize the data.</p>
 
 </div>
 </div>
@@ -20073,6 +20208,8 @@ kiSpNyxAkiRJknrDAiRJkiSpN/4HPGH0FheaULYAAAAASUVORK5CYII=
 <span class="n">true_centers</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">true_centers</span><span class="p">),</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 <span class="n">true_centers</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">segments</span>
 <span class="n">display</span><span class="p">(</span><span class="n">true_centers</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Difference of true centers from the means:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">true_centers</span><span class="o">-</span><span class="n">data</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
 </pre></div>
 
 </div>
@@ -20125,6 +20262,55 @@ kiSpNyxAkiRJknrDAiRJkiSpN/4HPGH0FheaULYAAAAASUVORK5CYII=
 
 </div>
 
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Difference of true centers from the means:
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Fresh</th>
+      <th>Milk</th>
+      <th>Grocery</th>
+      <th>Frozen</th>
+      <th>Detergents_Paper</th>
+      <th>Delicatessen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Segment 0</th>
+      <td>-5921.0</td>
+      <td>1246.0</td>
+      <td>2290.0</td>
+      <td>-1797.0</td>
+      <td>665.0</td>
+      <td>-366.0</td>
+    </tr>
+    <tr>
+      <th>Segment 1</th>
+      <td>-3033.0</td>
+      <td>-3876.0</td>
+      <td>-5514.0</td>
+      <td>-991.0</td>
+      <td>-2572.0</td>
+      <td>-784.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -20148,7 +20334,7 @@ kiSpNyxAkiRJknrDAiRJkiSpN/4HPGH0FheaULYAAAAASUVORK5CYII=
 <p><strong>Answer:</strong></p>
 <ul>
 <li>Segment 0: Spend above average on (in descending order) <code>Grocery</code>, <code>Milk</code> and <code>Detergens_Paper</code>. Spends below average on <code>Fresh</code>, <code>Frozen</code> and <code>Delicatessen</code>.</li>
-<li>Segment 1: Spend below average across all features. Feature ranking by amount spent: <code>Fresh</code>, <code>Grocery</code>, <code>Frozen</code>, <code>Milk</code>, <code>Delicatessen</code>, <code>Detergents_Paper</code>.</li>
+<li>Segment 1: Spend below average across all features. Feature ranking by total amount spent: <code>Fresh</code>, <code>Grocery</code>, <code>Frozen</code>, <code>Milk</code>, <code>Delicatessen</code>, <code>Detergents_Paper</code>.</li>
 </ul>
 <p>According to these results, this segmantation could be interpreted as large supermarkets (segment 0) vs small restaurants/cafes (segment 1).</p>
 
@@ -20204,9 +20390,9 @@ Sample point 2 predicted to be in Cluster 0
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <ul>
-<li>Sample point 0 : My original estimation was that this may be a restaurant. Our PCA classified it in cluster 0, which may mean this is a large restaurant.</li>
-<li>Sample point 1 : My original estimation was that this may be a cafe. Our PCA classified it in cluster 1, which corresponds to this assessment.</li>
-<li>Sample point 2 : My original estimation was that this may be a grocery store. Our PCA classified it in cluster 0, which corresponds to this assessment.</li>
+<li>Sample point 0 : This sample spends above average on Fresh and Delicatessen, and below average otherwise. This puts the sample at an ambivalent location copared with our segment centers. Our PCA classified it in cluster 0.</li>
+<li>Sample point 1 : This sample spends below average across the board, which mimics the segment 1 center. Our PCA classified it in cluster 1, which seems to be consistent with this sample.</li>
+<li>Sample point 2 : This sample spends above average on grocery items and detergents/paper, and below average on all other items. This mimics the segment 0 center. Our PCA classified it in cluster 0, which seems to be consistent with this sample.</li>
 </ul>
 
 </div>
