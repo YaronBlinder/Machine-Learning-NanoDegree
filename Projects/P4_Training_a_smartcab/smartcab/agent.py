@@ -44,7 +44,7 @@ class LearningAgent(Agent):
         # TODO: Select action according to your policy
 
         valid_actions = ['forward','right','left', None]
-        epsilon = 0.01 #0.01
+        epsilon = 0.1 #0.01
 
         best_action = max(self.Q_hat[self.state],key=self.Q_hat[self.state].get)
         random_action = choice(valid_actions)
@@ -59,16 +59,16 @@ class LearningAgent(Agent):
         new_next_waypoint = self.planner.next_waypoint()  # from route planner, also displayed by simulator
         new_inputs = self.env.sense(self)
         new_state = (new_next_waypoint, new_inputs['light'],new_inputs['oncoming'],new_inputs['right'],new_inputs['left'])
-        alpha = 0.7 #opt 0.7
-        gamma = 0.1 #opt 0.1
+        alpha = 0.5 #opt 0.7
+        gamma = 0.5 #opt 0.1
         max_Qhat_ahat = max(self.Q_hat[new_state].values())
         self.Q_hat[self.state][action] = (1-alpha)*self.Q_hat[self.state][action]+alpha*(reward+gamma*max_Qhat_ahat)
 
-        # print "LearningAgent.update(): deadline = {}, inputs = {}, action = {}, reward = {}".format(deadline, inputs, action, reward)  # [debug]
+        print "LearningAgent.update(): deadline = {}, inputs = {}, action = {}, reward = {}".format(deadline, inputs, action, reward)  # [debug]
 
 def run():
     """Run the agent for a finite number of trials."""
-    remove('logfile')
+    # remove('logfile')
     # Set up environment and agent
     e = Environment()  # create environment (also adds some dummy traffic)
     a = e.create_agent(LearningAgent)  # create agent
@@ -81,10 +81,10 @@ def run():
 
     sim.run(n_trials=100)  # run for a specified number of trials
     # NOTE: To quit midway, press Esc or close pygame window, or hit Ctrl+C on the command-line
-    log = pd.read_csv('logfile',names=['status','reward'])
-    success_rate = 1.0*len(log.loc[log.status == 'Reached'])/len(log)
-    mean_reward = log.loc[log.status == 'Reached']['reward'].mean()
-    print "Expected reward = "+str(success_rate*mean_reward)
+    # log = pd.read_csv('logfile',names=['status','reward'])
+    # success_rate = 1.0*len(log.loc[log.status == 'Reached'])/len(log)
+    # mean_reward = log.loc[log.status == 'Reached']['reward'].mean()
+    # print "Expected reward = "+str(success_rate*mean_reward)
 
 
 if __name__ == '__main__':
