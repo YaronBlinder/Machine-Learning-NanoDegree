@@ -11,11 +11,21 @@ An SQL materialized view was extracted from the database as defined in all_data.
 python libraries used:
 
 numpy - numerical operation
+
 pandas - dataframe handling
+
 os - general operating system operations
-psycopg2 - Used to access a locally installed postgresql server and perform sql queries. 
+
+psycopg2 - Used to access a locally installed postgresql server and 
+perform sql queries. 
+
 xgboost - eXtreme Gradient Boosted trees. Classifier implementation.
-scikit-learn - Used for hyperparameter optimization and performance metrics evaluation.
+
+scikit-learn - Used for hyperparameter optimization and performance 
+metrics evaluation.
+
 scipy - interp function used during plotting of the ROC curve.
+
 matplotlib - visualization
+
 seaborn - visualization
